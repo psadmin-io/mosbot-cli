@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+#options
+type  = ARGV.shift || "help"
+id    = ARGV.shift
+
+case type
+when "doc"
+  mosurl = "https://support.oracle.com/epmos/faces/DocumentDisplay?id=" + id
+when "bug"
+  mosurl = "https://support.oracle.com/epmos/faces/BugMatrix?id=" + id
+when "patch"
+  mosurl = "https://support.oracle.com/epmos/faces/PatchResultsNDetails?patchId=" + id
+when "idea"
+  mosurl = "https://community.oracle.com/ideas/" + id
+when "help"
+  mosurl = "TODO: Generate Help Screen"
+else
+  mosurl = "https://support.oracle.com/epmos/faces/DocumentDisplay?id=" + type
+end
+
+puts mosurl
