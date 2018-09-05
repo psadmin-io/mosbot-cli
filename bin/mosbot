@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/mosbot'
+require 'mosbot'
+# require_relative '../lib/mosbot'
 
 #options
 type  = ARGV.shift || "help"

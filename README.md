@@ -8,7 +8,12 @@
     $ mosbot bug 1222341
     $ https://support.oracle.com/epmos/faces/BugMatrix?id=1222341
 
-`mosbot` will default to documents. If you specify only a number `mosbot` will return a document URL.
+`mosbot` will default to documents. If you specify only a number `mosbot` will return a document URL. Supported types are:
+
+* `doc`
+* `bug`
+* `patch`
+* `idea`
 
 You can also configure `mosbot` to copy the output URL or open a browser window with the URL. The environment variables `MOS_COPY_URL=true` and `MOS_OPEN_URL=true` control how `mosbot` handles the output.
 
