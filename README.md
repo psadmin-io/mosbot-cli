@@ -38,10 +38,10 @@ You can also configure `mosbot` to copy the output URL or open a browser window 
 
 The `.mosbot.conf` file stores key=value pairs:
 
-    ```ini
-    MOS_COPY_URL=true
-    MOS_OPEN_URL=true
-    ```
+```ini
+MOS_COPY_URL=true
+MOS_OPEN_URL=true
+```
 
 The configuration file takes precedence over environment variables.
 
