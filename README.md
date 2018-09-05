@@ -34,7 +34,7 @@ You can also configure `mosbot` to copy the output URL or open a browser window 
 
 ## Config File
 
-`mosbot` will also ready from a configuration file. The default config file is `~/.mosbot.conf`. You can override that file by using the `MOS_BOT_CONF` environment variable.
+`mosbot` will also read from a configuration file. The default config file is `~/.mosbot.conf`. You can override that file by using the `MOS_BOT_CONF` environment variable.
 
 The `.mosbot.conf` file stores key=value pairs:
 

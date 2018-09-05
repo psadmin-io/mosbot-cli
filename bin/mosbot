@@ -1,11 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'mosbot'
-# require_relative '../lib/mosbot'
-
-#options
-type  = ARGV.shift || "help"
-id    = ARGV.shift
 
 # setup environment
 MOS_BOT_CONF = ENV['MOS_BOT_CONF'] || "#{ENV['HOME']}/.mosbot.conf"
@@ -20,34 +15,41 @@ if File.exists?(MOS_BOT_CONF) then
     end
 end
 
+# variables
+type            = 'doc'
+id              = '0'
+
 # grab command line options
 ARGV.each do |arg|
   case arg
+  # parameter is a an id
+  when /^[0-9]+(\.)?([0-9])?/
+    id   = arg
+  when "doc"
+    type = 'doc'
+  when "bug"
+    type = 'bug'
+  when "patch"
+    type = 'patch'
+  when "idea"
+    type = 'idea'
   when "-o"
     ENV['MOS_OPEN_URL']="true"
   when "-c"
     ENV['MOS_COPY_URL']="true"
+  when "-h" "--help"
+    type='help'
   end
 end
 
 # constants
-OS_CONST            = os
-MOS_COPY_URL        = ENV['MOS_COPY_URL'] || "false"
-MOS_OPEN_URL        = ENV['MOS_OPEN_URL'] || "false"
+OS_CONST        = os
+MOS_COPY_URL    = ENV['MOS_COPY_URL'] || "false"
+MOS_OPEN_URL    = ENV['MOS_OPEN_URL'] || "false"
 
-case type
-when "doc"
-  mosurl = "https://support.oracle.com/epmos/faces/DocumentDisplay?id=" + id
-when "bug"
-  mosurl = "https://support.oracle.com/epmos/faces/BugMatrix?id=" + id
-when "patch"
-  mosurl = "https://support.oracle.com/epmos/faces/PatchResultsNDetails?patchId=" + id
-when "idea"
-  mosurl = "https://community.oracle.com/ideas/" + id
-when "help"
-  mosurl = "TODO: Generate Help Screen"
+if type == "help" 
+  display_help()
 else
-  mosurl = "https://support.oracle.com/epmos/faces/DocumentDisplay?id=" + type
+  mosurl = generate_url(type, id)
+  handle_output(mosurl)
 end
-
-handle_output(mosurl)

@@ -20,22 +20,66 @@ def os
    )
 end
 
+def generate_url(type, id)
+  case type
+  when "doc"
+    mosurl = "https://support.oracle.com/epmos/faces/DocumentDisplay?id=" + id
+  when "bug"
+    mosurl = "https://support.oracle.com/epmos/faces/BugMatrix?id=" + id
+  when "patch"
+    mosurl = "https://support.oracle.com/epmos/faces/PatchResultsNDetails?patchId=" + id
+  when "idea"
+    mosurl = "https://community.oracle.com/ideas/" + id
+  else
+    mosurl = "https://support.oracle.com/epmos/faces/DocumentDisplay?id=" + id
+  end
+end
+
 def handle_output(url)
   puts url
+  
   if "#{MOS_COPY_URL}" == "true" 
     case "#{OS_CONST}"
     when "macosx", "linux"
-      out = `echo "#{url}" | pbcopy`
+      command = "echo #{url} | pbcopy"
     when "windows"
-      out = `echo "#{url}" | clip`
+      command = "echo #{url} | clip"
     end
+    do_cmd(command)
   end
+
   if "#{MOS_OPEN_URL}" == "true"
     case "#{OS_CONST}"
     when "macosx"
-      out = `open #{url}`
+      command = "open #{url}"
     when "windows"
-      out = `start #{url}`
+      command = "start #{url}"
     end
+    do_cmd(command)
   end
+end
+
+def do_cmd(command)
+  out = `#{command}`
+end
+
+def display_help
+  puts "mosbot - a utility to generate Oracle Support URLs"
+  puts " "
+  puts "Usage:"
+  puts "mosbot <type> <id>"
+  puts " "
+  puts "  <type> is one of:"
+  puts "  * doc"
+  puts "  * bug" 
+  puts "  * patch"
+  puts "  * idea"
+  puts " "
+  puts "  <id> is the document id, bug number, patch number or idea number"
+  puts " "
+  puts "Options:"
+  puts "  -c    Copy the URL to the clipboard"
+  puts "  -o    Open the URL in a browser"
+  puts " "
+  puts "Visit https://github.com/psadmin-io/mosbot-cli to learn how to use the configuration file."
 end
