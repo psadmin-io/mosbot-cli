@@ -37,7 +37,7 @@ MOS_OPEN_URL        = ENV['MOS_OPEN_URL'] || "false"
 
 case type
 when "help"
-  puts "TODO: Generate Help Screen"
+  print_help()
 when "doc"
   mosurl = "https://support.oracle.com/epmos/faces/DocumentDisplay?id=" + id
 when "bug"

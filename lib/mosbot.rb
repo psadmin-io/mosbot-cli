@@ -23,7 +23,6 @@ end
 def handle_output(url)
   puts url
   
-  puts "MOS_COPY_URL: #{MOS_COPY_URL}"
   if "#{MOS_COPY_URL}" == "true" 
     case "#{OS_CONST}"
     when "macosx", "linux"
@@ -34,7 +33,6 @@ def handle_output(url)
     do_cmd(command)
   end
 
-  puts "MOS_OPEN_URL: #{MOS_OPEN_URL}"
   if "#{MOS_OPEN_URL}" == "true"
     case "#{OS_CONST}"
     when "macosx"
@@ -48,4 +46,25 @@ end
 
 def do_cmd(command)
   out = `#{command}`
+end
+
+def print_help
+  puts "mosbot - a utility to generate Oracle Support URLs"
+  puts " "
+  puts "Usage:"
+  puts "mosbot <type> <id>"
+  puts " "
+  puts "  <type> is one of:"
+  puts "  * doc"
+  puts "  * bug" 
+  puts "  * patch"
+  puts "  * idea"
+  puts " "
+  puts "  <id> is the document id, bug number, patch number or idea number"
+  puts " "
+  puts "Options:"
+  puts "  -c    Copy the URL to the clipboard"
+  puts "  -o    Open the URL in a browser"
+  puts " "
+  puts "Visit https://github.com/psadmin-io/mosbot-cli to learn how to use configuration file."
 end
