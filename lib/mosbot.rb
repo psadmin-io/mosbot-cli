@@ -30,4 +30,12 @@ def handle_output(url)
       out = `echo "#{url}" | clip`
     end
   end
+  if "#{MOS_OPEN_URL}" == "true"
+    case "#{OS_CONST}"
+    when "macosx"
+      out = `open #{url}`
+    when "windows"
+      out = `start #{url}`
+    end
+  end
 end

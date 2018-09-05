@@ -22,6 +22,7 @@ end
 # constants
 OS_CONST            = os
 MOS_COPY_URL        = ENV['MOS_COPY_URL'] || "false"
+MOS_OPEN_URL        = ENV['MOS_OPEN_URL'] || "false"
 
 case type
 when "doc"
