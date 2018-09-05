@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "mosbot"
-  spec.version       = "0.2.5"
+  spec.version       = "0.3.0"
   spec.authors       = ["Dan Iverson", "Kyle Benson"]
   spec.email         = ["dan@psadmin.io"]
   spec.files         = ["lib/mosbot.rb"]
