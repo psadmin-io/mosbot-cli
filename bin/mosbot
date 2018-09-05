@@ -15,10 +15,7 @@ if File.exists?(MOS_BOT_CONF) then
     end
 end
 
-# constants
-OS_CONST        = os
-MOS_COPY_URL    = ENV['MOS_COPY_URL'] || "false"
-MOS_OPEN_URL    = ENV['MOS_OPEN_URL'] || "false"
+# variables
 type            = 'doc'
 id              = '0'
 
@@ -44,6 +41,11 @@ ARGV.each do |arg|
     type='help'
   end
 end
+
+# constants
+OS_CONST        = os
+MOS_COPY_URL    = ENV['MOS_COPY_URL'] || "false"
+MOS_OPEN_URL    = ENV['MOS_OPEN_URL'] || "false"
 
 if type == "help" 
   display_help()
