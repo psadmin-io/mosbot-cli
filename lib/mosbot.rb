@@ -20,6 +20,21 @@ def os
    )
 end
 
+def generate_url(type, id)
+  case type
+  when "doc"
+    mosurl = "https://support.oracle.com/epmos/faces/DocumentDisplay?id=" + id
+  when "bug"
+    mosurl = "https://support.oracle.com/epmos/faces/BugMatrix?id=" + id
+  when "patch"
+    mosurl = "https://support.oracle.com/epmos/faces/PatchResultsNDetails?patchId=" + id
+  when "idea"
+    mosurl = "https://community.oracle.com/ideas/" + id
+  else
+    mosurl = "https://support.oracle.com/epmos/faces/DocumentDisplay?id=" + id
+  end
+end
+
 def handle_output(url)
   puts url
   
@@ -48,7 +63,7 @@ def do_cmd(command)
   out = `#{command}`
 end
 
-def print_help
+def display_help
   puts "mosbot - a utility to generate Oracle Support URLs"
   puts " "
   puts "Usage:"
@@ -66,5 +81,5 @@ def print_help
   puts "  -c    Copy the URL to the clipboard"
   puts "  -o    Open the URL in a browser"
   puts " "
-  puts "Visit https://github.com/psadmin-io/mosbot-cli to learn how to use configuration file."
+  puts "Visit https://github.com/psadmin-io/mosbot-cli to learn how to use the configuration file."
 end
