@@ -1,8 +1,28 @@
 #!/usr/bin/env ruby
 
+require_relative '../lib/mosbot'
+
 #options
 type  = ARGV.shift || "help"
 id    = ARGV.shift
+
+# setup environment
+MOS_BOT_CONF = ENV['MOS_BOT_CONF'] || "#{ENV['HOME']}/.mosbot.conf"
+if File.exists?(MOS_BOT_CONF) then
+    File.readlines(MOS_BOT_CONF).each do |line|
+        if line.start_with? "#" then
+            next 
+        else
+            key, value = line.split "="
+            ENV[key] = value.strip
+        end
+    end
+end
+
+# constants
+OS_CONST            = os
+MOS_COPY_URL        = ENV['MOS_COPY_URL'] || "false"
+MOS_OPEN_URL        = ENV['MOS_OPEN_URL'] || "false"
 
 case type
 when "doc"
@@ -19,4 +39,4 @@ else
   mosurl = "https://support.oracle.com/epmos/faces/DocumentDisplay?id=" + type
 end
 
-puts mosurl
+handle_output(mosurl)
