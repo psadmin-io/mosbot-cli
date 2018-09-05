@@ -36,6 +36,8 @@ MOS_COPY_URL        = ENV['MOS_COPY_URL'] || "false"
 MOS_OPEN_URL        = ENV['MOS_OPEN_URL'] || "false"
 
 case type
+when "help"
+  puts "TODO: Generate Help Screen"
 when "doc"
   mosurl = "https://support.oracle.com/epmos/faces/DocumentDisplay?id=" + id
 when "bug"
@@ -44,10 +46,10 @@ when "patch"
   mosurl = "https://support.oracle.com/epmos/faces/PatchResultsNDetails?patchId=" + id
 when "idea"
   mosurl = "https://community.oracle.com/ideas/" + id
-when "help"
-  mosurl = "TODO: Generate Help Screen"
 else
   mosurl = "https://support.oracle.com/epmos/faces/DocumentDisplay?id=" + type
 end
 
-handle_output(mosurl)
+if type != "help"
+  handle_output(mosurl)
+end

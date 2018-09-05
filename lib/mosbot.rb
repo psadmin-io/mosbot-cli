@@ -22,20 +22,30 @@ end
 
 def handle_output(url)
   puts url
+  
+  puts "MOS_COPY_URL: #{MOS_COPY_URL}"
   if "#{MOS_COPY_URL}" == "true" 
     case "#{OS_CONST}"
     when "macosx", "linux"
-      out = `echo "#{url}" | pbcopy`
+      command = "echo #{url} | pbcopy"
     when "windows"
-      out = `echo "#{url}" | clip`
+      command = "echo #{url} | clip"
     end
+    do_cmd(command)
   end
+
+  puts "MOS_OPEN_URL: #{MOS_OPEN_URL}"
   if "#{MOS_OPEN_URL}" == "true"
     case "#{OS_CONST}"
     when "macosx"
-      out = `open #{url}`
+      command = "open #{url}"
     when "windows"
-      out = `start #{url}`
+      command = "start #{url}"
     end
+    do_cmd(command)
   end
+end
+
+def do_cmd(command)
+  out = `#{command}`
 end
