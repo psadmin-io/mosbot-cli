@@ -20,6 +20,16 @@ if File.exists?(MOS_BOT_CONF) then
     end
 end
 
+# grab command line options
+ARGV.each do |arg|
+  case arg
+  when "-o"
+    ENV['MOS_OPEN_URL']="true"
+  when "-c"
+    ENV['MOS_COPY_URL']="true"
+  end
+end
+
 # constants
 OS_CONST            = os
 MOS_COPY_URL        = ENV['MOS_COPY_URL'] || "false"
