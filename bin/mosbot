@@ -4,6 +4,44 @@
 type  = ARGV.shift || "help"
 id    = ARGV.shift
 
+# setup environment
+MOS_BOT_CONF = ENV['MOS_BOT_CONF'] || "#{ENV['HOME']}/.mosbot.conf"
+if File.exists?(MOS_BOT_CONF) then
+    File.readlines(MOS_BOT_CONF).each do |line|
+        if line.start_with? "#" then
+            next 
+        else
+            key, value = line.split "="
+            ENV[key] = value.strip
+        end
+    end
+end
+
+def os
+  @os ||= (
+      host_os = RbConfig::CONFIG['host_os']
+          case host_os
+          when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+              :windows
+          when /darwin|mac os/
+              :macosx
+          when /linux/
+              :linux
+          when /solaris|bsd/
+              :unix
+          else
+              raise Error::WebDriverError, "unknown os: #{host_os.inspect}"
+          end
+   )
+end
+
+def handle_output
+
+end
+
+
+
+
 case type
 when "doc"
   mosurl = "https://support.oracle.com/epmos/faces/DocumentDisplay?id=" + id
@@ -18,5 +56,6 @@ when "help"
 else
   mosurl = "https://support.oracle.com/epmos/faces/DocumentDisplay?id=" + type
 end
+
 
 puts mosurl
