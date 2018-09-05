@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/mosbot'
+require 'mosbot'
+# require_relative '../lib/mosbot'
 
 #options
 type  = ARGV.shift || "help"
@@ -17,6 +18,16 @@ if File.exists?(MOS_BOT_CONF) then
             ENV[key] = value.strip
         end
     end
+end
+
+# grab command line options
+ARGV.each do |arg|
+  case arg
+  when "-o"
+    ENV['MOS_OPEN_URL']="true"
+  when "-c"
+    ENV['MOS_COPY_URL']="true"
+  end
 end
 
 # constants
