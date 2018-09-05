@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require_relative '../lib/mosbot'
+
 #options
 type  = ARGV.shift || "help"
 id    = ARGV.shift
@@ -17,30 +19,9 @@ if File.exists?(MOS_BOT_CONF) then
     end
 end
 
-def os
-  @os ||= (
-      host_os = RbConfig::CONFIG['host_os']
-          case host_os
-          when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-              :windows
-          when /darwin|mac os/
-              :macosx
-          when /linux/
-              :linux
-          when /solaris|bsd/
-              :unix
-          else
-              raise Error::WebDriverError, "unknown os: #{host_os.inspect}"
-          end
-   )
-end
-
-def handle_output
-
-end
-
-
-
+# constants
+OS_CONST            = os
+MOS_COPY_URL        = ENV['MOS_COPY_URL'] || "false"
 
 case type
 when "doc"
@@ -57,5 +38,4 @@ else
   mosurl = "https://support.oracle.com/epmos/faces/DocumentDisplay?id=" + type
 end
 
-
-puts mosurl
+handle_output(mosurl)
