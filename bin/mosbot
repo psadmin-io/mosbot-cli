@@ -20,27 +20,33 @@ type            = 'doc'
 id              = '0'
 
 # grab command line options
-ARGV.each do |arg|
-  case arg
-  # parameter is a an id
-  when /^[0-9]+(\.)?([0-9])?/
-    id   = arg
-  when "doc"
-    type = 'doc'
-  when "bug"
-    type = 'bug'
-  when "patch"
-    type = 'patch'
-  when "idea"
-    type = 'idea'
-  when "-o"
-    ENV['MOS_OPEN_URL']="true"
-  when "-c"
-    ENV['MOS_COPY_URL']="true"
-  when "-h" "--help"
-    type='help'
+if ARGV.empty?
+  type='help'
+else
+  ARGV.each do |arg|
+    case arg
+    # parameter is a an id
+    when /^[0-9]+(\.)?([0-9])?/
+      id   = arg
+    when "doc"
+      type = 'doc'
+    when "bug"
+      type = 'bug'
+    when "patch"
+      type = 'patch'
+    when "idea"
+      type = 'idea'
+    when "-o"
+      ENV['MOS_OPEN_URL']="true"
+    when "-c"
+      ENV['MOS_COPY_URL']="true"
+    when " ", "help", "-h", "--help", "/?"
+      type='help'
+    end
   end
 end
+
+
 
 # constants
 OS_CONST        = os
