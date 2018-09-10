@@ -30,6 +30,8 @@ def generate_url(type, id)
     mosurl = "https://support.oracle.com/epmos/faces/PatchResultsNDetails?patchId=" + id
   when "idea"
     mosurl = "https://community.oracle.com/ideas/" + id
+  when "sr"
+    mosurl = "https://support.oracle.com/epmos/faces/SrDetail?srNumber=" + id
   else
     mosurl = "https://support.oracle.com/epmos/faces/DocumentDisplay?id=" + id
   end
@@ -74,6 +76,7 @@ def display_help
   puts "  * bug" 
   puts "  * patch"
   puts "  * idea"
+  puts "  * sr"
   puts " "
   puts "  <id> is the document id, bug number, patch number or idea number"
   puts " "
