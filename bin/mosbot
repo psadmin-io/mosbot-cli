@@ -36,6 +36,8 @@ else
       type = 'patch'
     when "idea"
       type = 'idea'
+    when "sr"
+      type = 'sr'
     when "-o"
       ENV['MOS_OPEN_URL']="true"
     when "-c"
