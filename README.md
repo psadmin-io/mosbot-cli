@@ -1,4 +1,4 @@
-![mosbot](mosbot_logo.png)
+![mosbot](mosbot_logo_100.png)
 
 `mosbot` will generate a My Oracle Support URL based on a document ID, bug number, patch number or community idea.
 
