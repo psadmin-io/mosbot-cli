@@ -55,7 +55,7 @@ OS_CONST        = os
 MOS_COPY_URL    = ENV['MOS_COPY_URL'] || "false"
 MOS_OPEN_URL    = ENV['MOS_OPEN_URL'] || "false"
 
-if type == "help" 
+if type == "help" || id == "0"
   display_help()
 else
   mosurl = generate_url(type, id)
