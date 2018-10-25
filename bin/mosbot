@@ -20,7 +20,7 @@ type            = 'doc'
 id              = '0'
 
 # grab command line options
-if ARGV.empty? || ARGV.length < 2
+if ARGV.empty?
   type='help'
 else
   ARGV.each do |arg|
