@@ -44,14 +44,20 @@ def generate_public_url(id)
 end
 
 def get_title(mospuburl)
-  open(mospuburl) do |f|
-    str = f.read
-    page_title = str.scan(/<title>(.*?)<\/title>/)[0][0]
+  begin
+    open(mospuburl) do |f|
+      str = f.read
+      page_title = str.scan(/<title>(.*?)<\/title>/)[0][0]
+    end
+  rescue
+    page_title = ''
   end
 end
 
 def handle_output(url, title)
-  puts title
+  if !title.empty?
+    puts title
+  end
   puts url
   
   if "#{MOS_COPY_URL}" == "true" 
