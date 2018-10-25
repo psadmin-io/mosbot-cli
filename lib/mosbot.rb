@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'rbconfig'
+require 'open-uri'
 
 def os
   @os ||= (
@@ -37,7 +38,20 @@ def generate_url(type, id)
   end
 end
 
-def handle_output(url)
+def generate_public_url(id)
+  id = id.sub('.', '_')
+  mospuburl = "https://support.oracle.com/knowledge/PeopleSoft%20Enterprise/"+id+".html"
+end
+
+def get_title(mospuburl)
+  open(mospuburl) do |f|
+    str = f.read
+    page_title = str.scan(/<title>(.*?)<\/title>/)[0][0]
+  end
+end
+
+def handle_output(url, title)
+  puts title
   puts url
   
   if "#{MOS_COPY_URL}" == "true" 

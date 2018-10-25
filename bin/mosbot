@@ -59,5 +59,7 @@ if type == "help" || id == "0"
   display_help()
 else
   mosurl = generate_url(type, id)
-  handle_output(mosurl)
+  mospuburl = generate_public_url(id)
+  page_title = get_title(mospuburl)
+  handle_output(mosurl, page_title)
 end
