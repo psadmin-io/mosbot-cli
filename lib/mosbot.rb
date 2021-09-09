@@ -31,7 +31,7 @@ def generate_url(type, id)
   when "patch"
     mosurl = "https://support.oracle.com/epmos/faces/PatchResultsNDetails?patchId=" + id
   when "idea"
-    mosurl = "https://community.oracle.com/ideas/" + id
+    mosurl = "https://community.oracle.com/mosc/discussion/" + id
   when "sr"
     mosurl = "https://support.oracle.com/epmos/faces/SrDetail?srNumber=" + id
   else
