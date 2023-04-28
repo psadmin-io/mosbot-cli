@@ -2,6 +2,7 @@
 
 require 'rbconfig'
 require 'open-uri'
+require 'uri'
 require 'cgi'
 
 def os
@@ -46,7 +47,7 @@ end
 
 def get_title(mospuburl)
   begin
-    open(mospuburl) do |f|
+    URI.open(mospuburl) do |f|
       str = f.read
       page_title = CGI.unescapeHTML(str.scan(/<title>(.*?)<\/title>/)[0][0])
     end
